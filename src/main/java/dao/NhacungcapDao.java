@@ -1,5 +1,8 @@
 package dao;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -7,10 +10,14 @@ import entity.Nhacungcap;
 import service.NhacungcapService;
 import utils.HibernateUtils;
 
-public class NhacungcapDao implements NhacungcapService{
+public class NhacungcapDao extends UnicastRemoteObject implements NhacungcapService{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private EntityManager em;
-	public NhacungcapDao() {
+	public NhacungcapDao() throws RemoteException{
 		// TODO Auto-generated constructor stub
 		this.em = HibernateUtils.getInstance().getEntityManager();
 	}

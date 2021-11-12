@@ -11,13 +11,17 @@ import utils.HibernateUtils;
 
 public class HoadonDao extends UnicastRemoteObject implements HoadonService  {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private EntityManager em;
 	public HoadonDao()  throws RemoteException{
 		// TODO Auto-generated constructor stub
 		this.em = HibernateUtils.getInstance().getEntityManager();
 	}
 	@Override
-	public Hoadon getHoadonbyId(int id) {
+	public Hoadon getHoadonbyId(int id) throws RemoteException {
 		// TODO Auto-generated method stub
 		Hoadon hoadon = new Hoadon();
 		

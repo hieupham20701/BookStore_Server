@@ -1,25 +1,28 @@
 package dao;
 
-import java.util.List;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 import entity.Calam;
 import entity.ChitietCalam;
-import entity.ChitietHoadon;
-import service.ChitietHoadonService;
+import service.ChitietCalamService;
 import utils.HibernateUtils;
 
-public class ChitietCalamDao implements ChitietHoadonService {
+public class ChitietCalamDao extends UnicastRemoteObject implements ChitietCalamService {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private EntityManager em;
-	public ChitietCalamDao() {
+	public ChitietCalamDao() throws RemoteException {
 		// TODO Auto-generated constructor stub
 		this.em = HibernateUtils.getInstance().getEntityManager();
 	}
-	public ChitietCalam getChitietCalamById(String id, Calam calam) {
+	public ChitietCalam getChitietCalamById(String id, Calam calam) throws RemoteException{
 		// TODO Auto-generated method stub
 		ChitietCalam chitietcalam = null;
 	
@@ -38,9 +41,4 @@ public class ChitietCalamDao implements ChitietHoadonService {
 		return chitietcalam;
 	}
 
-	@Override
-	public List<ChitietHoadon> getChitietHoadonById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

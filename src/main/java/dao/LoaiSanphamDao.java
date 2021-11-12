@@ -1,30 +1,38 @@
 package dao;
 
-import org.hibernate.Session;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import entity.LoaiSanpham;
 import service.LoaiSanphamService;
+import utils.HibernateUtils;
 
-public class LoaiSanphamDao implements LoaiSanphamService {
+public class LoaiSanphamDao extends UnicastRemoteObject implements LoaiSanphamService {
 
-	private SessionFactory sessionFactory;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private EntityManager em;
 	
-	
-	public LoaiSanphamDao(SessionFactory sessionFactory) {
+	public LoaiSanphamDao() throws RemoteException {
 		super();
-		this.sessionFactory = sessionFactory;
+		this.em = HibernateUtils.getInstance().getEntityManager();
 	}
 
 
-	public LoaiSanpham getLoaiSanphamById(String id) {
-		Session session = sessionFactory.getCurrentSession();
-		Transaction trans = session.getTransaction();
+	public LoaiSanpham getLoaiSanphamById(String id) throws RemoteException {
+		
+		EntityTransaction trans = em.getTransaction();
 		
 		try {
 			trans.begin();
-			LoaiSanpham loaisp = session.find(LoaiSanpham.class, id);
+			LoaiSanpham loaisp = em.find(LoaiSanpham.class, id);
 			trans.commit();
 			return loaisp;
 		} catch (Exception e) {

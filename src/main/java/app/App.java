@@ -3,9 +3,23 @@ package app;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 
+import dao.CalamDao;
+import dao.ChitietCalamDao;
+import dao.ChitietHoadonDao;
 import dao.HoadonDao;
+import dao.KhachhangDao;
+import dao.LoaiSanphamDao;
+import dao.NhacungcapDao;
+import dao.NhanvienDao;
 import dao.SanphamDao;
+import service.CalamService;
+import service.ChitietCalamService;
+import service.ChitietHoadonService;
 import service.HoadonService;
+import service.KhachhangService;
+import service.LoaiSanphamService;
+import service.NhacungcapService;
+import service.NhanvienService;
 import service.SanphamService;
 
 public class App {
@@ -18,12 +32,34 @@ public class App {
 
 		try {
 			LocateRegistry.createRegistry(1099);
-
+			//SanphamService
 			SanphamService sanphamService = new SanphamDao();
-			Naming.bind("rmi://192.168.1.4:1099/sanphamService", sanphamService);
+			Naming.bind("rmi://192.168.1.6:1099/sanphamService", sanphamService);
+			//HoadonService
 			HoadonService hoadonService = new HoadonDao();
-			Naming.bind("rmi://192.168.1.4:1099/sanphamService", hoadonService);
-
+			Naming.bind("rmi://192.168.1.6:1099/hoadonService", hoadonService);
+			//CalamService
+			CalamService calamService = new CalamDao();
+			Naming.bind("rmi://192.168.1.6:1099/calamService", calamService);
+			//ChitietCalamService
+			ChitietCalamService chitietCalamService = new ChitietCalamDao();
+			Naming.bind("rmi://192.168.1.6:1099/chitietCalamService", chitietCalamService);
+			//ChitietHoadonService
+			ChitietHoadonService chitietHoadonService = new ChitietHoadonDao();
+			Naming.bind("rmi://192.168.1.6:1099/chitietHoadonService", chitietHoadonService);
+			//KhachhangService
+			KhachhangService khachhangService = new KhachhangDao();
+			Naming.bind("rmi://192.168.1.6:1099/khachhangService", khachhangService);
+			//LoaiSanphamService
+			LoaiSanphamService loaiSanphamService = new LoaiSanphamDao();
+			Naming.bind("rmi://192.168.1.6:1099/loaiSanphamService", loaiSanphamService);
+			//Nhacungcapservice
+			NhacungcapService nhacungcapService = new NhacungcapDao();
+			Naming.bind("rmi://192.168.1.6:1099/nhacungcapService", nhacungcapService);
+			//NhanvienService
+			NhanvienService nhanvienService = new NhanvienDao();
+			Naming.bind("rmi://192.168.1.6:1099/nhanvienService", nhanvienService);
+			
 			System.out.println("Server bound in RMIRegistry");
 
 		} catch (Exception e) {

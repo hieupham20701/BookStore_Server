@@ -8,22 +8,22 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
 import entity.Sanpham;
 import service.SanphamService;
 import utils.HibernateUtils;
 
 public class SanphamDao  extends UnicastRemoteObject implements SanphamService{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private EntityManager em;
 
 	public SanphamDao() throws RemoteException {
 		this.em = HibernateUtils.getInstance().getEntityManager();
 	}
 
-	public Sanpham getSanphamById(int id) {
+	public Sanpham getSanphamById(int id) throws RemoteException{
 		
 		EntityTransaction trans = em.getTransaction();
 		

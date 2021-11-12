@@ -1,20 +1,26 @@
 package dao;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 import entity.Calam;
 import service.CalamService;
 import utils.HibernateUtils;
 
-public class CalamDao implements CalamService {
+public class CalamDao extends UnicastRemoteObject implements CalamService {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private EntityManager em;
-	public CalamDao() {
+	public CalamDao() throws RemoteException{
 		// TODO Auto-generated constructor stub
 		this.em = HibernateUtils.getInstance().getEntityManager();
 	}
-	public Calam getCalamById(String id) {
+	public Calam getCalamById(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		Calam calam = null;
 		String sql ="select * from chitietcalam ctcl join calam cl \r\n"

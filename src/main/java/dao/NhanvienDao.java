@@ -1,25 +1,28 @@
 package dao;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import entity.Nhanvien;
 import service.NhanvienService;
 import utils.HibernateUtils;
 
-public class NhanvienDao implements NhanvienService{
+public class NhanvienDao extends UnicastRemoteObject implements NhanvienService{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private EntityManager em;
 	
-	public NhanvienDao() {
+	public NhanvienDao() throws RemoteException{
 		this.em = HibernateUtils.getInstance().getEntityManager();
 	}
 
-	public Nhanvien getNhanvienById(String id) {
+	public Nhanvien getNhanvienById(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		EntityTransaction trans = em.getTransaction();
 		
