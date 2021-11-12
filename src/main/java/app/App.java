@@ -29,36 +29,37 @@ public class App {
 			System.setProperty("java.security.policy", "policy/policy.policy");
 			System.setSecurityManager(new SecurityManager());
 		}
-
+		
 		try {
+			String ip = "192.168.1.6";
 			LocateRegistry.createRegistry(1099);
 			//SanphamService
 			SanphamService sanphamService = new SanphamDao();
-			Naming.bind("rmi://192.168.1.6:1099/sanphamService", sanphamService);
+			Naming.bind("rmi://"+ip+":1099/sanphamService", sanphamService);
 			//HoadonService
 			HoadonService hoadonService = new HoadonDao();
-			Naming.bind("rmi://192.168.1.6:1099/hoadonService", hoadonService);
+			Naming.bind("rmi://"+ip+":1099/hoadonService", hoadonService);
 			//CalamService
 			CalamService calamService = new CalamDao();
-			Naming.bind("rmi://192.168.1.6:1099/calamService", calamService);
+			Naming.bind("rmi://"+ip+":1099/calamService", calamService);
 			//ChitietCalamService
 			ChitietCalamService chitietCalamService = new ChitietCalamDao();
-			Naming.bind("rmi://192.168.1.6:1099/chitietCalamService", chitietCalamService);
+			Naming.bind("rmi://"+ip+":1099/chitietCalamService", chitietCalamService);
 			//ChitietHoadonService
 			ChitietHoadonService chitietHoadonService = new ChitietHoadonDao();
-			Naming.bind("rmi://192.168.1.6:1099/chitietHoadonService", chitietHoadonService);
+			Naming.bind("rmi://"+ip+":1099/chitietHoadonService", chitietHoadonService);
 			//KhachhangService
 			KhachhangService khachhangService = new KhachhangDao();
-			Naming.bind("rmi://192.168.1.6:1099/khachhangService", khachhangService);
+			Naming.bind("rmi://"+ip+":1099/khachhangService", khachhangService);
 			//LoaiSanphamService
 			LoaiSanphamService loaiSanphamService = new LoaiSanphamDao();
-			Naming.bind("rmi://192.168.1.6:1099/loaiSanphamService", loaiSanphamService);
+			Naming.bind("rmi://"+ip+":1099/loaiSanphamService", loaiSanphamService);
 			//Nhacungcapservice
 			NhacungcapService nhacungcapService = new NhacungcapDao();
-			Naming.bind("rmi://192.168.1.6:1099/nhacungcapService", nhacungcapService);
+			Naming.bind("rmi://"+ip+":1099/nhacungcapService", nhacungcapService);
 			//NhanvienService
 			NhanvienService nhanvienService = new NhanvienDao();
-			Naming.bind("rmi://192.168.1.6:1099/nhanvienService", nhanvienService);
+			Naming.bind("rmi://"+ip+":1099/nhanvienService", nhanvienService);
 			
 			System.out.println("Server bound in RMIRegistry");
 
