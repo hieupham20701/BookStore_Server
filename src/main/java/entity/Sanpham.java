@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,6 +25,7 @@ public class Sanpham implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name ="ma_sanpham")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "ten_sp")
 	private String tenSanpham;
@@ -33,7 +36,7 @@ public class Sanpham implements Serializable{
 	@Column(name = "trangthai")
 	private String trangthai;	
 	@Column(name = "hinhanh")
-	private Blob hinhanh;
+	private byte[] hinhanh;
 	@Column(name  ="ten_tacgia")
 	private String tenTacgia;
 	@Column(name = "sotrang")
@@ -130,18 +133,13 @@ public class Sanpham implements Serializable{
 		this.nhacungcap = nhacungcap;
 	}
 
-	public Blob getHinhanh() {
+
+	
+	public byte[] getHinhanh() {
 		return hinhanh;
 	}
-	public void setHinhanh(Blob hinhanh) {
+	public void setHinhanh(byte[] hinhanh) {
 		this.hinhanh = hinhanh;
-	}
-	
-	public Set<ChitietHoadon> getChitiethoadon() {
-		return chitiethoadon;
-	}
-	public void setChitiethoadon(Set<ChitietHoadon> chitiethoadon) {
-		this.chitiethoadon = chitiethoadon;
 	}
 	@Override
 	public String toString() {
