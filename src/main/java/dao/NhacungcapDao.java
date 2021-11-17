@@ -48,7 +48,7 @@ public class NhacungcapDao extends UnicastRemoteObject implements NhacungcapServ
 		String sql = "select * from nhacungcap";
 		try {
 			tran.begin();
-			list = em.createNativeQuery(sql).getResultList();
+			list = em.createNativeQuery(sql,Nhacungcap.class).getResultList();
 			tran.commit();
 		}catch (Exception e) {
 			// TODO: handle exception

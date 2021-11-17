@@ -38,35 +38,35 @@ public class App {
 					  .ignoreIfMalformed()
 					  .ignoreIfMissing()
 					  .load();
-			String ip = dotenv.get("Test");
+			String url = dotenv.get("URL");
 			LocateRegistry.createRegistry(1099);
 			//SanphamService
 			SanphamService sanphamService = new SanphamDao();
-			Naming.bind("rmi://"+ip+":1099/sanphamService", sanphamService);
+			Naming.bind(url + "/sanphamService", sanphamService);
 			//HoadonService
 			HoadonService hoadonService = new HoadonDao();
-			Naming.bind("rmi://"+ip+":1099/hoadonService", hoadonService);
+			Naming.bind(url + "/hoadonService", hoadonService);
 			//CalamService
 			CalamService calamService = new CalamDao();
-			Naming.bind("rmi://"+ip+":1099/calamService", calamService);
+			Naming.bind(url + "/calamService", calamService);
 			//ChitietCalamService
 			ChitietCalamService chitietCalamService = new ChitietCalamDao();
-			Naming.bind("rmi://"+ip+":1099/chitietCalamService", chitietCalamService);
+			Naming.bind(url + "/chitietCalamService", chitietCalamService);
 			//ChitietHoadonService
 			ChitietHoadonService chitietHoadonService = new ChitietHoadonDao();
-			Naming.bind("rmi://"+ip+":1099/chitietHoadonService", chitietHoadonService);
+			Naming.bind(url + "/chitietHoadonService", chitietHoadonService);
 			//KhachhangService
 			KhachhangService khachhangService = new KhachhangDao();
-			Naming.bind("rmi://"+ip+":1099/khachhangService", khachhangService);
+			Naming.bind(url + "/khachhangService", khachhangService);
 			//LoaiSanphamService
 			LoaiSanphamService loaiSanphamService = new LoaiSanphamDao();
-			Naming.bind("rmi://"+ip+":1099/loaiSanphamService", loaiSanphamService);
+			Naming.bind(url + "/loaiSanphamService", loaiSanphamService);
 			//Nhacungcapservice
 			NhacungcapService nhacungcapService = new NhacungcapDao();
-			Naming.bind("rmi://"+ip+":1099/nhacungcapService", nhacungcapService);
+			Naming.bind(url + "/nhacungcapService", nhacungcapService);
 			//NhanvienService
 			NhanvienService nhanvienService = new NhanvienDao();
-			Naming.bind("rmi://"+ip+":1099/nhanvienService", nhanvienService);
+			Naming.bind(url +"/nhanvienService", nhanvienService);
 			
 			System.out.println("Server bound in RMIRegistry");
 

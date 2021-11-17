@@ -4,9 +4,12 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import dao.LoaiSanphamDao;
+import dao.NhacungcapDao;
 import entity.LoaiSanpham;
+import entity.Nhacungcap;
 import io.github.cdimascio.dotenv.Dotenv;
 import service.LoaiSanphamService;
+import service.NhacungcapService;
 
 
 
@@ -20,12 +23,11 @@ public class Main {
 //			System.out.println(item.toString());
 //		});
 //		dao.deleteLoaiSP("TT");
-		Dotenv dotenv = Dotenv.configure()
-				  .directory("assets\\.env")
-				  .ignoreIfMalformed()
-				  .ignoreIfMissing()
-				  .load();
-		System.out.print(dotenv.get("Test"));
+		NhacungcapService dao = new NhacungcapDao();
+		List<Nhacungcap> list = dao.getNhaCungCap();
+		list.forEach(item -> {
+			System.out.println(item.toString());
+		});
 	}
 
 }
