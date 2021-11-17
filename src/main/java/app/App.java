@@ -12,6 +12,7 @@ import dao.LoaiSanphamDao;
 import dao.NhacungcapDao;
 import dao.NhanvienDao;
 import dao.SanphamDao;
+import io.github.cdimascio.dotenv.Dotenv;
 import service.CalamService;
 import service.ChitietCalamService;
 import service.ChitietHoadonService;
@@ -31,7 +32,13 @@ public class App {
 		}
 		
 		try {
-			String ip = "192.168.1.6";
+//			String ip = "192.168.1.6";
+			Dotenv dotenv = Dotenv.configure()
+					  .directory("assets\\.env")
+					  .ignoreIfMalformed()
+					  .ignoreIfMissing()
+					  .load();
+			String ip = dotenv.get("Test");
 			LocateRegistry.createRegistry(1099);
 			//SanphamService
 			SanphamService sanphamService = new SanphamDao();
