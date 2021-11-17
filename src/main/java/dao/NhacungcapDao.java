@@ -2,6 +2,8 @@ package dao;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -37,6 +39,71 @@ public class NhacungcapDao extends UnicastRemoteObject implements NhacungcapServ
 
 		}
 		
+	}
+	@Override
+	public List<Nhacungcap> getNhaCungCap() throws RemoteException {
+		// TODO Auto-generated method stub
+		EntityTransaction tran = em.getTransaction();
+		List<Nhacungcap> list = new ArrayList<Nhacungcap>();
+		String sql = "select * from nhacungcap";
+		try {
+			tran.begin();
+			list = em.createNativeQuery(sql,Nhacungcap.class).getResultList();
+			tran.commit();
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			tran.rollback();
+		}
+		return list;
+	}
+	@Override
+	public boolean insertNhaCungCap(Nhacungcap nhacc) throws RemoteException {
+		// TODO Auto-generated method stub
+		EntityTransaction tran = em.getTransaction();
+		try {
+			tran.begin();
+			em.persist(nhacc);
+			tran.commit();
+			return true;
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			tran.rollback();
+			return false;
+		}
+	}
+	@Override
+	public boolean updateNhaCungCap(Nhacungcap nhacc) throws RemoteException {
+		// TODO Auto-generated method stub
+		EntityTransaction tran = em.getTransaction();
+		try {
+			tran.begin();
+			em.merge(nhacc);
+			tran.commit();
+			return true;
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			tran.rollback();
+			return false;
+		}
+	}
+	@Override
+	public boolean deleteNhaCungCap(String mancc) throws RemoteException {
+		// TODO Auto-generated method stub
+		EntityTransaction tran = em.getTransaction();
+		try {
+			tran.begin();
+			em.remove(em.find(Nhacungcap.class, mancc));
+			tran.commit();
+			return true;
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			tran.rollback();
+			return false;
+		}
 	}
 
 }
