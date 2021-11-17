@@ -2,11 +2,13 @@ package entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,6 +23,7 @@ public class Hoadon implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int mahd;
 	@ManyToOne
 	@JoinColumn(name = "makh")
@@ -35,11 +38,11 @@ public class Hoadon implements Serializable{
 	private double sotientralai;
 	
 	@OneToMany(mappedBy = "hoadon")
-	private Set<ChitietHoadon> chitiethoadon;
+	private List<ChitietHoadon> chitiethoadon;
 	
 	public Hoadon() {
 		// TODO Auto-generated constructor stub
-		this.chitiethoadon = new TreeSet<ChitietHoadon>();
+		this.chitiethoadon = new ArrayList<ChitietHoadon>();
 	}
 	
 	public Hoadon(int mahd, Khachhang khachhang, Nhanvien nhanvien, Date ngaylapHd, double sotiennhan,
@@ -51,9 +54,26 @@ public class Hoadon implements Serializable{
 		this.ngaylapHd = ngaylapHd;
 		this.sotiennhan = sotiennhan;
 		this.sotientralai = sotientralai;
-		this.chitiethoadon = new TreeSet<ChitietHoadon>();
+		this.chitiethoadon = new ArrayList<ChitietHoadon>();
 	}
-
+	public void addChitietHoadon(Hoadon hoadon, Sanpham sanpham, double dongia, int soluong) {
+		ChitietHoadon cthd = new ChitietHoadon(hoadon, sanpham, dongia, soluong);
+		chitiethoadon.add(cthd);
+		this.tongtien += (cthd.getDongia()*cthd.getSoluong());
+	}
+	
+	public void updateChitietHoadon(int i, int soluong) {
+		double tientru = (chitiethoadon.get(i).getDongia() * chitiethoadon.get(i).getSoluong()) ;
+		this.tongtien -= tientru;
+		chitiethoadon.get(i).setSoluong(soluong);
+		this.tongtien += (chitiethoadon.get(i).getDongia() * chitiethoadon.get(i).getSoluong()) ;
+	}
+	
+	public void removeChitietHoadon(int i) {
+		double tientru = (chitiethoadon.get(i).getDongia() * chitiethoadon.get(i).getSoluong()) ;
+		chitiethoadon.remove(i);
+		this.tongtien -= tientru;
+	}
 	public int getMahd() {
 		return mahd;
 	}
@@ -94,13 +114,8 @@ public class Hoadon implements Serializable{
 		return tongtien;
 	}
 
-	
-	public Set<ChitietHoadon> getChitiethoadon() {
+	public List<ChitietHoadon> getChitiethoadon() {
 		return chitiethoadon;
-	}
-
-	public void setChitiethoadon(Set<ChitietHoadon> chitiethoadon) {
-		this.chitiethoadon = chitiethoadon;
 	}
 
 	public void setSotientralai(double sotientralai) {

@@ -32,7 +32,7 @@ public class ChitietHoadon implements Serializable{
 	@Column(name = "dongia")
 	private double dongia;
 	@Column(name = "soluong")
-	private double soluong;
+	private int soluong;
 	@Column(name = "thanhtien")
 	private double thanhtien;
 	
@@ -40,7 +40,7 @@ public class ChitietHoadon implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ChitietHoadon(Hoadon hoadon, Sanpham sanpham, double dongia, double soluong) {
+	public ChitietHoadon(Hoadon hoadon, Sanpham sanpham, double dongia, int soluong) {
 		super();
 		this.hoadon = hoadon;
 		this.sanpham = sanpham;
@@ -69,7 +69,7 @@ public class ChitietHoadon implements Serializable{
 	public double getSoluong() {
 		return soluong;
 	}
-	public void setSoluong(double soluong) {
+	public void setSoluong(int soluong) {
 		this.soluong = soluong;
 	}
 	public double getThanhtien() {
