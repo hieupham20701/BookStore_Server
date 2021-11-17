@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 import entity.ChitietHoadon;
+import entity.Hoadon;
+import entity.Sanpham;
 import service.ChitietHoadonService;
 import utils.HibernateUtils;
 
@@ -34,6 +37,20 @@ public class ChitietHoadonDao extends UnicastRemoteObject implements ChitietHoad
 			e.printStackTrace();
 		}
 		return cthd;
+	}
+	@Override
+	public boolean insertChitietHoadon(ChitietHoadon chitietHoadon) throws RemoteException {
+		// TODO Auto-generated method stub
+		EntityTransaction trans = em.getTransaction();
+		try {
+			trans.begin();
+			em.persist(chitietHoadon);
+			trans.commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+			trans.rollback();
+		}
+		return false;
 	}
 	
 }

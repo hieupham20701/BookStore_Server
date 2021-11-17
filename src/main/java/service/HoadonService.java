@@ -7,5 +7,7 @@ import entity.Hoadon;
 
 public interface HoadonService extends Remote{
 	
-	Hoadon getHoadonbyId(int id) throws RemoteException;
+	public Hoadon getHoadonbyId(int id) throws RemoteException;
+	public Hoadon getHoadonMoi() throws RemoteException;
+	public boolean insertHoadon(Hoadon hoadon) throws RemoteException; 
 }

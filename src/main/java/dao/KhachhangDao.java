@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 import entity.Khachhang;
 import service.KhachhangService;
@@ -33,6 +34,22 @@ public class KhachhangDao extends UnicastRemoteObject implements KhachhangServic
 			return null;
 		}
 		return khachhang;
+	}
+	@Override
+	public boolean insertKhachhang(Khachhang khachhang) throws RemoteException {
+		EntityTransaction trans = em.getTransaction();
+		
+		try {
+			trans.begin();
+			em.persist(khachhang);
+			trans.commit();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			trans.rollback();
+		}
+		return false;
 	}
 
 }

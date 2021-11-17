@@ -19,4 +19,6 @@ public interface SanphamService extends Remote{
 	public List<Nhacungcap> getNhacungcapServices() throws RemoteException;
 	public List<Sanpham> getSanphamByName(String name) throws RemoteException;
 	public List<Sanpham> getDodunghoctap(String name) throws RemoteException;
+	public List<Sanpham> getSanphamByLoaiSP(String name) throws RemoteException;
+	public List<Sanpham> getSanphamAll() throws RemoteException;
 }

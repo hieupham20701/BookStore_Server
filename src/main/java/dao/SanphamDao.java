@@ -208,4 +208,40 @@ public class SanphamDao  extends UnicastRemoteObject implements SanphamService{
 		
 		return dsSanpham; 
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Sanpham> getSanphamByLoaiSP(String name) throws RemoteException {
+		List<Sanpham> dsSanpham = new ArrayList<Sanpham>();
+		EntityTransaction trans = em.getTransaction();
+		String sql = "Select * from sanpham where ma_loaisp = '"+name+"'";
+		try {
+			trans.begin();
+			dsSanpham = em.createNativeQuery(sql, Sanpham.class).getResultList();
+			trans.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			trans.rollback();
+		}
+		return dsSanpham;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Sanpham> getSanphamAll() throws RemoteException {
+		List<Sanpham> dsSanpham = new ArrayList<Sanpham>();
+		EntityTransaction trans = em.getTransaction();
+		String sql = "Select * from sanpham ";
+		try {
+			trans.begin();
+			dsSanpham = em.createNativeQuery(sql, Sanpham.class).getResultList();
+			trans.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			trans.rollback();
+		}
+		return dsSanpham;
+	}
 }
