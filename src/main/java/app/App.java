@@ -12,6 +12,8 @@ import dao.LoaiSanphamDao;
 import dao.NhacungcapDao;
 import dao.NhanvienDao;
 import dao.SanphamDao;
+import dao.ThongKeDao;
+import dao.TimKiemDao;
 import io.github.cdimascio.dotenv.Dotenv;
 import service.CalamService;
 import service.ChitietCalamService;
@@ -22,6 +24,8 @@ import service.LoaiSanphamService;
 import service.NhacungcapService;
 import service.NhanvienService;
 import service.SanphamService;
+import service.ThongKeService;
+import service.TimKiemService;
 
 public class App {
 	public static void main(String[] args) {
@@ -67,6 +71,12 @@ public class App {
 			//NhanvienService
 			NhanvienService nhanvienService = new NhanvienDao();
 			Naming.bind(url +"/nhanvienService", nhanvienService);
+			
+			TimKiemService timkiemService = new TimKiemDao();
+			Naming.bind(url +"/timkiemService", timkiemService);
+			
+			ThongKeService thongkeService = new ThongKeDao();
+			Naming.bind(url +"/thongkeService", thongkeService);
 			
 			System.out.println("Server bound in RMIRegistry");
 
