@@ -47,6 +47,12 @@ public class Nhanvien implements Serializable{
 		this.matkhau = matkhau;
 		this.luongcoban = luongcoban;
 	}
+	
+	public Nhanvien(String id, String matkhau) {
+		super();
+		this.id = id;
+		this.matkhau = matkhau;
+	}
 	public String getId() {
 		return id;
 	}
@@ -100,6 +106,26 @@ public class Nhanvien implements Serializable{
 		return "Nhanvien [id=" + id + ", tenNhanvien=" + tenNhanvien + ", sodienthoai=" + sodienthoai + ", chucvu="
 				+ chucvu + ", diachi=" + diachi + ", email=" + email + ", matkhau=" + matkhau + ", luongcoban="
 				+ luongcoban + "]";
+	}
+	public Nhanvien(String id, String tenNhanvien, String sodienthoai, String chucvu, String diachi, String email,
+			String matkhau) {
+		super();
+		this.id = id;
+		this.tenNhanvien = tenNhanvien;
+		this.sodienthoai = sodienthoai;
+		this.chucvu = chucvu;
+		this.diachi = diachi;
+		this.email = email;
+		this.matkhau = matkhau;
+	}
+	public Nhanvien(String id, String tenNhanvien, String sodienthoai, String chucvu, String diachi, String email) {
+		super();
+		this.id = id;
+		this.tenNhanvien = tenNhanvien;
+		this.sodienthoai = sodienthoai;
+		this.chucvu = chucvu;
+		this.diachi = diachi;
+		this.email = email;
 	}
 	
 	

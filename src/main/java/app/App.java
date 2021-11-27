@@ -9,6 +9,7 @@ import dao.ChitietHoadonDao;
 import dao.HoadonDao;
 import dao.KhachhangDao;
 import dao.LoaiSanphamDao;
+import dao.LoginDao;
 import dao.NhacungcapDao;
 import dao.NhanvienDao;
 import dao.SanphamDao;
@@ -21,6 +22,7 @@ import service.ChitietHoadonService;
 import service.HoadonService;
 import service.KhachhangService;
 import service.LoaiSanphamService;
+import service.LoginServiece;
 import service.NhacungcapService;
 import service.NhanvienService;
 import service.SanphamService;
@@ -78,6 +80,9 @@ public class App {
 			ThongKeService thongkeService = new ThongKeDao();
 			Naming.bind(url +"/thongkeService", thongkeService);
 			
+			//LoginService
+			LoginServiece loginServiece=new LoginDao();
+			Naming.bind(url +"/loginServiece", loginServiece);
 			System.out.println("Server bound in RMIRegistry");
  
 		} catch (Exception e) {
