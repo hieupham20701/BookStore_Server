@@ -9,8 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import entity.ChitietHoadon;
-import entity.Hoadon;
-import entity.Sanpham;
 import service.ChitietHoadonService;
 import utils.HibernateUtils;
 
@@ -44,7 +42,7 @@ public class ChitietHoadonDao extends UnicastRemoteObject implements ChitietHoad
 		EntityTransaction trans = em.getTransaction();
 		try {
 			trans.begin();
-			em.persist(chitietHoadon);
+			em.merge(chitietHoadon);
 			trans.commit();
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -69,7 +69,7 @@ public class App {
 			Naming.bind(url +"/nhanvienService", nhanvienService);
 			
 			System.out.println("Server bound in RMIRegistry");
-
+ 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
